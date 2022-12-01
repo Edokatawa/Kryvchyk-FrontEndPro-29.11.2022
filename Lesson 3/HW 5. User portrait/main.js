@@ -5,8 +5,12 @@ const kindSport = prompt('Ваш улюблений вид спорту?');
 let ageReturn,cityReturn,kindSportReturn;
 const currentYear = 2022;
 
-if ((!!birthYear !== false) || (birthYear > currentYear)) {
-    ageReturn = `Ваш вік: ${currentYear - birthYear} р.`;
+if ((!!birthYear !== false) && (birthYear <= currentYear)) {
+    if (birthYear === currentYear) {
+        ageReturn = `Ваш вік: ${currentYear - birthYear} р....Немовля??😳`;
+    } else {
+        ageReturn = `Ваш вік: ${currentYear - birthYear} р.`;
+    }
 } else {
     ageReturn = "Шкода, що Ви не захотіли ввести свій рік народження(";
 }
