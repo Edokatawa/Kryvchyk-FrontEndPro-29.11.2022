@@ -47,7 +47,7 @@ do {
         if (numb4>1) {
             for(let i = 2; i < numb4; i++) {
                 if(numb4 % i === 0) {
-                    integerNumber = false;
+                    primeNumber = false;
                     break;
                 }
             }
