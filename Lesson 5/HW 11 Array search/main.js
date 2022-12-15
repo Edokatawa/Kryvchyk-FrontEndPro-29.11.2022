@@ -1,4 +1,4 @@
-let arr = [16, -37, 54, -4, 72, -56, 47, 4, -16, 25, -37, 46, 4, -51, 27, -63, 4, -54, 76, -4, 12, -35, 4, 47];
+const arr = [16, -37, 54, -4, 72, -56, 47, 4, -16, 25, -37, 46, 4, -51, 27, -63, 4, -54, 76, -4, 12, -35, 4, 47];
 console.log(`Масив:\n${arr}\n\n`)
 
 // Ex 1
@@ -17,7 +17,7 @@ console.log(
 
 // Ex 2
 console.log(`\n\n2. Знайти мінімальний елемент масиву та його порядковий номер.`);
-let minElemArr = 0, minElemArrIndex = 0;
+let minElemArr = arr[0], minElemArrIndex = 0;
 for(i = 0; i < arr.length; i++) {
     if (arr[i] < minElemArr) {
         minElemArr = arr[i];
@@ -31,7 +31,7 @@ console.log(
 
 // Ex 3
 console.log(`\n\n3. Знайти максимальний елемент масиву та його порядковий номер.`);
-let maxElemArrEx3 = 0, maxElemArrIndex = 0;
+let maxElemArrEx3 = arr[0], maxElemArrIndex = 0;
 for (i = 0; i < arr.length; i++) {
     if (arr[i] > maxElemArrEx3) {
         maxElemArrEx3 = arr[i];
@@ -105,16 +105,12 @@ console.log(`Добуток позитивних елементів: ${productPo
 
 // Ex 10
 console.log(`\n\n10. Знайти найбільший серед елементів масиву, остальні обнулити.`);
-let maxElemArrEx10 = 0, maxElemArrEx10Index = 0;
+let maxElemArrEx10 = arr[0], maxElemArrEx10Index = 0;
 for (i = 0; i < arr.length; i++) {
     if (arr[i] > maxElemArrEx10) {
-        if (i > 0) {
-            maxElemArrEx10 = arr[i];
-            arr[maxElemArrEx10Index] = 0;
-            maxElemArrEx10Index = i;
-        } else {
-            maxElemArrEx10 = arr[i];
-        }
+        maxElemArrEx10 = arr[i];
+        arr[maxElemArrEx10Index] = 0;
+        maxElemArrEx10Index = i;
     } else {
         arr[i] = 0;
     }
