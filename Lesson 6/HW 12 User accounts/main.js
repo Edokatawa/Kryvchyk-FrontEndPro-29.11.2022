@@ -69,21 +69,24 @@ const showArrPhoneUsers = arrUsers => {
     });
 
     if (arrPhoneUsers.length === 0) {
-        return console.log(
+        console.log(
             `\nНа жаль, немає жодного користувача у якого баланс був би більше ${checkingBalance} доларів...`
         );
     }
 
-    return console.log(
+    console.log(
         `\nМасив телефонних номерів користувачів, баланс яких більше 2000 доларів:\n`,
         arrPhoneUsers
     );
 };
 
 const showSumBalanceUsers = arrUsers => {
-    let sumBalanceUsers = arrUsers
+    const sumBalanceUsers = arrUsers
         .map(elem => replaceBalanceUser(elem))
-        .reduce((accumulator, currentValue) => (accumulator += currentValue));
+        .reduce(
+            (accumulator, currentValue) => (accumulator += currentValue),
+            0
+        );
 
     console.log(
         `Сума всіх балансів користувачів дорівнює ${sumBalanceUsers.toFixed(2)}`
