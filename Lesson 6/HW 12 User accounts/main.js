@@ -72,12 +72,12 @@ const showArrPhoneUsers = arrUsers => {
         console.log(
             `\nНа жаль, немає жодного користувача у якого баланс був би більше ${checkingBalance} доларів...`
         );
+    } else {
+        console.log(
+            `\nМасив телефонних номерів користувачів, баланс яких більше 2000 доларів:\n`,
+            arrPhoneUsers
+        );
     }
-
-    console.log(
-        `\nМасив телефонних номерів користувачів, баланс яких більше 2000 доларів:\n`,
-        arrPhoneUsers
-    );
 };
 
 const showSumBalanceUsers = arrUsers => {
