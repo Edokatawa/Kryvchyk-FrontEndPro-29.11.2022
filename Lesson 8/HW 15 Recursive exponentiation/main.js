@@ -3,18 +3,19 @@ console.log(
     `\n- Число, яке треба піднести до ступеню, передається як перший аргумент у функції;`,
     `\n- Ступінь передається як другий аргумент у функціюpow (num, degree).\n\n`
 );
-let errorMessage = "";
 
-const getNumber = title => {
-    let number = prompt(`${errorMessage} ${title}`);
-    errorMessage = "";
+const getNumber = (
+    title,
+    errorMessage = "Ви ввели некоректне значення! ",
+    errorState = false
+) => {
+    let number = prompt(`${errorState ? errorMessage : ""} ${title}`);
     if (number === null) {
         return null;
     }
     number = +number;
     if (isNaN(number)) {
-        errorMessage = "Ви ввели не число!";
-        return getNumber(title);
+        return getNumber(title, errorMessage, true);
     }
 
     return number;
@@ -36,6 +37,6 @@ const degree =
 
 const pow = powRecursion(number, degree);
 
-if (typeof number === "number" && typeof degree === "number") {
+if (typeof pow === "number") {
     console.log(`${number} ^ ${degree} = ${pow}`);
 }
