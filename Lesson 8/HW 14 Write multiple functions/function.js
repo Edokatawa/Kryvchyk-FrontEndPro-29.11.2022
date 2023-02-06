@@ -1,96 +1,116 @@
-const arithmeticMeanOnlyNumbElemArr = (arr) => {
+const arithmeticMeanOnlyNumbElemArr = arr => {
     const arithmeticMean = arr
-        .map((elem) => parseInt(elem, 10))
-        .filter((elem) => !!elem)
-        .reduce((firstElem, secondElem, index, arr) => {
-            if(index !== arr.length - 1) {
-                return firstElem + secondElem;
+        .filter(elem => typeof elem === "number" && !isNaN(elem))
+        .reduce((accumulator, currentValue, index, arr) => {
+            if (index !== arr.length - 1) {
+                return accumulator + currentValue;
             } else {
-                return (firstElem + secondElem) / arr.length;
+                return (accumulator + currentValue) / arr.length;
             }
-        });
-        
-    return console.log(`Середнє арифметичне лише числових елементів масиву дорівнює: ${arithmeticMean}`);
+        }, 0);
+
+    console.log(
+        `Середнє арифметичне лише числових елементів масиву дорівнює: ${arithmeticMean}`
+    );
 };
 
-const getNumber = (title) => {
-    let numb = prompt(`${title}`);
+const getNumber = (title, errorMessage, lessThanZeroState) => {
+    let numb = prompt(`${errorMessage}${title}`, 0);
 
     if (numb === null) {
         return null;
     }
     numb = +numb;
     if (isNaN(numb)) {
-        return getNumber(title);
+        return getNumber(
+            title,
+            "Ви ввели некоректне значення! \n",
+            lessThanZeroState
+        );
+    }
+    if (lessThanZeroState === false) {
+        if (numb <= 0) {
+            return getNumber(
+                title,
+                "Значення повинно бути більше нуля. \n",
+                lessThanZeroState
+            );
+        }
     }
 
     return numb;
 };
 
-const getZnakArithmeticOperator = () => {
-    const arrArithmeticOperators = ['+', '-', '*', '/', '%', '^'];
-    let znakArithmeticOperator = prompt('(Ex 2) Введіть символ арифметичної операції (+, -, *, /, %, ^):');
+const getZnakArithmeticOperator = (firstNumb, errorMessage) => {
+    if (typeof firstNumb === "number") {
+        const znakArithmeticOperator = prompt(
+            `${errorMessage}(Ex 2) Введіть символ арифметичної операції (+, -, *, /, %, ^):`
+        );
 
-    if (znakArithmeticOperator === null) {
-        return null;
-    } else if (arrArithmeticOperators.some(elem => elem === znakArithmeticOperator)) {
+        if (znakArithmeticOperator === null) {
+            return null;
+        }
+        if (
+            !ARR_ARITHMETIC_OPERATORS.some(
+                elem => elem === znakArithmeticOperator
+            )
+        ) {
+            return getZnakArithmeticOperator(
+                firstNumb,
+                "Такої арифметичної операції не існує! "
+            );
+        }
+
         return znakArithmeticOperator;
-    } else {
-        return getZnakArithmeticOperator();
     }
 };
 
 const doMath = (x, znak, y) => {
-    if (typeof NumbX === 'number') {
+    if (typeof x === "number" && znak !== null && typeof y === "number") {
         let mathResult;
         switch (znak) {
-            case '+':
+            case "+":
                 mathResult = x + y;
-            case '-':
+                break;
+            case "-":
                 mathResult = x - y;
-            case '*':
+                break;
+            case "*":
                 mathResult = x * y;
-            case '/':
+                break;
+            case "/":
                 if (y === 0) {
                     return console.log(`На нуль ділити не можна!`);
                 } else {
                     mathResult = x / y;
                 }
-            case '%':
+                break;
+            case "%":
                 mathResult = x % y;
-            case '^':
+                break;
+            case "^":
                 mathResult = x ** y;
-        
+                break;
         }
 
         return console.log(`${x} ${znak} ${y} = ${mathResult}`);
     }
-};
 
-const getLengthForArray = (title) => {
-    let numbX = prompt(`${title}`);
-
-    if (numbX === null) {
-        return null;
-    }
-    numbX = +numbX;
-    if ((numbX <= 0) || (isNaN(numbX))) {
-        return getLengthForArray(title);
-    }
-
-    return numbX;
+    console.log("Ви ввели не всі дані");
 };
 
 const get2DArrayEx3 = (lengthMainArr, lengthInternalArr) => {
-    if (typeof lengthMainArr === 'number') {
+    if (
+        typeof lengthMainArr === "number" &&
+        typeof lengthInternalArr === "number"
+    ) {
         const arr2D = [];
         for (let i = 0; i < lengthMainArr; i++) {
             const row2DArr = [];
-            for(let j = 0; j < lengthInternalArr; j++) {
-                const elemInternalArr = prompt(`Введіть ${j + 1} елемент ${i + 1} рядка:`);
-                if (elemInternalArr === null) {
-                    return null;
-                }
+            for (let j = 0; j < lengthInternalArr; j++) {
+                const elemInternalArr = prompt(
+                    `Введіть ${j + 1} елемент ${i + 1} рядка:`
+                );
                 row2DArr.push(elemInternalArr);
             }
 
@@ -99,36 +119,35 @@ const get2DArrayEx3 = (lengthMainArr, lengthInternalArr) => {
 
         return console.log(`Двовимірний масив: \n`, arr2D);
     }
+
+    console.log("Ви ввели не всі дані");
 };
 
-const getArrCharToDelete = (countCharToDelete) => {
-    const arrCharToDelete = [];
-    for(let i = 0; i < countCharToDelete; i++) {
-        const elemArrToDelete = prompt(`Введать ${i + 1} елемент який потрібно видалити з рядку:`);
+const showClearenLine = (rowOfChar, charToDelete) => {
+    if (typeof rowOfChar === "string" && typeof charToDelete === "string") {
+        if (rowOfChar.trim() !== "" && charToDelete.trim() !== "") {
+            const arrCharToDelete = charToDelete.split(" ");
 
-        arrCharToDelete.push(elemArrToDelete);
-    }
+            console.log(`Введений рядок: \n${rowOfChar}`);
+            console.log(
+                `Символи які потрібно видалити з рядку: \n${arrCharToDelete.join(
+                    ", "
+                )}`
+            );
 
-    return arrCharToDelete;
-};
-
-const showClearenLine = (rowOfChar, arrCharToDelete) => {
-    if (typeof rowOfChar === 'string') {
-        console.log(`Введений рядок: \n${rowOfChar}`);
-        console.log(`Символи які потрібно видалити з рядку: \n${arrCharToDelete}`);
-        const arrRowOfChar = [];
-        for (i = 0; i < rowOfChar.length; i++) {
-            arrRowOfChar.push(rowOfChar[i]);
-        }
-        arrClearLine = arrRowOfChar.filter((elem, index, arr) => {
-            for(let i = 0; i < arr.length; i++) {
-                if (arr[index] === arrCharToDelete[i]) {
+            const arrRowOfChar = rowOfChar.split("");
+            const arrClearLine = arrRowOfChar.filter(elem => {
+                if (arrCharToDelete.includes(elem)) {
                     return false;
                 }
 
                 return true;
-            }
-        });
-        console.log(`Кінцевий результат: \n${arrClearLine.join('')}`);
+            });
+            return console.log(
+                `Кінцевий результат: \n${arrClearLine.join("")}`
+            );
+        }
     }
+
+    console.log("Ви ввели не всі дані");
 };
