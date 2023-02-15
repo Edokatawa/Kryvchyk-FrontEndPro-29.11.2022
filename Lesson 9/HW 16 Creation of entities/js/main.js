@@ -1,11 +1,18 @@
 "use strict";
 
-const person1 = new Person("Перша людина");
-const person2 = new Person("Друга людина");
+const dataPerson1 = createPerson("Перша людина");
+const dataPerson2 = createPerson("Друга людина");
 
-const car1 = new Car();
-const car2 = new Car();
-const car3 = new Car();
+const dataCar1 = createCar();
+const dataCar2 = createCar();
+const dataCar3 = createCar();
+
+const person1 = new Person(dataPerson1);
+const person2 = new Person(dataPerson2);
+
+const car1 = new Car(dataCar1);
+const car2 = new Car(dataCar2);
+const car3 = new Car(dataCar3);
 
 person1.showPersonInfo();
 person2.showPersonInfo();
