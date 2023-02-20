@@ -1,0 +1,44 @@
+h4 {
+    margin: 0px;
+}
+button {
+    cursor: pointer;
+}
+
+.container {
+    width: 600px;
+    border: 1px solid black;
+    border-bottom: 0px;
+}
+
+.container .inner-container {
+    padding: 10px 20px;
+    display: flex;
+    column-gap: 20px;
+    border-bottom: 1px solid black;
+}
+
+.messageInput {
+    display: none;
+}
+
+.second-step-content {
+    display: flex;
+    flex-direction: column;
+}
+.second-step-content .btn-content {
+    display: flex;
+    column-gap: 20px;
+}
+.second-step-content .final-url {
+    margin-top: 10px;
+}
+
+.random-img {
+    display: flex;
+}
+
+.random-img img {
+    width: 100%;
+    height: auto;
+}
