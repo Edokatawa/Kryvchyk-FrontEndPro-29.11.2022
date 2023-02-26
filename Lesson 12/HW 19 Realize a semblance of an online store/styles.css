@@ -1,0 +1,91 @@
+html,
+body {
+    margin: 0;
+}
+
+.container {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+}
+.container .category-item .category-elem {
+    padding: 12px 20px;
+    font-size: 16px;
+    line-height: 18px;
+    cursor: pointer;
+}
+.container .category-item .category-elem:focus,
+.container .category-item .category-elem:hover {
+    background-color: rgb(7, 3, 68);
+    color: white;
+}
+.container .category-item .category-elem:focus::after,
+.container .category-item .category-elem:hover::after {
+    margin-left: 15px;
+    content: "➤";
+    color: white;
+}
+
+.container .category-item.categories {
+    flex: 0 0 20%;
+    border-right: 1px solid black;
+}
+.container .category-item.products {
+    flex: 0 0 50%;
+    display: flex;
+    flex-wrap: wrap;
+    border-right: 1px solid black;
+}
+.container .category-item.products .product-item {
+    height: fit-content;
+    flex: 0 0 33%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid rgb(156, 156, 156);
+    cursor: pointer;
+}
+.container .category-item.products .product-item:hover {
+    background-color: rgb(242, 248, 254);
+}
+.container .category-item.products .product-item img {
+    object-fit: contain;
+    width: 180px;
+    height: 180px;
+}
+.container .category-item.products .product-item h4 {
+    margin: 15px 0px 20px 0px;
+}
+
+.container .category-item.details {
+    flex: 0 0 29%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.container .category-item.details .img-container {
+    padding: 10px 20px;
+    display: flex;
+}
+.container .category-item.details .img-container img {
+    object-fit: contain;
+    width: 150px;
+    height: 150px;
+}
+.container .category-item.details .img-container .title-price-container {
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.container .category-item.details .description-product {
+    padding: 10px 20px;
+}
+.container .category-item.details .btn-buy-product {
+    padding: 10px 40px;
+    cursor: pointer;
+}
