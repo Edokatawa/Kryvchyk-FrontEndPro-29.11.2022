@@ -5,9 +5,25 @@ body {
 
 .container {
     margin-top: 40px;
+    margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
     align-items: stretch;
+}
+.container .title {
+    width: -webkit-fill-available;
+    margin: 0;
+    padding: 10px 20px;
+    border-bottom: 1px solid;
+}
+.container .sub-title {
+    width: -webkit-fill-available;
+    margin: 0;
+    padding: 10px 20px;
+}
+.container .message {
+    margin: 0;
+    padding: 10px 20px;
 }
 .container .category-item .category-elem {
     padding: 12px 20px;
@@ -28,16 +44,19 @@ body {
 }
 
 .container .category-item.categories {
-    flex: 0 0 20%;
+    flex: 0 0 20.3%;
     border-right: 1px solid black;
 }
 .container .category-item.products {
-    flex: 0 0 50%;
-    display: flex;
-    flex-wrap: wrap;
+    flex: 0 0 50.3%;
     border-right: 1px solid black;
 }
-.container .category-item.products .product-item {
+.container .category-item.products .product-list {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+.container .category-item.products .product-list .product-item {
     height: fit-content;
     flex: 0 0 33%;
     display: flex;
@@ -47,20 +66,20 @@ body {
     border: 1px solid rgb(156, 156, 156);
     cursor: pointer;
 }
-.container .category-item.products .product-item:hover {
+.container .category-item.products .product-list .product-item:hover {
     background-color: rgb(242, 248, 254);
 }
-.container .category-item.products .product-item img {
+.container .category-item.products .product-list .product-item img {
     object-fit: contain;
     width: 180px;
     height: 180px;
 }
-.container .category-item.products .product-item h4 {
+.container .category-item.products .product-list .product-item h4 {
     margin: 15px 0px 20px 0px;
 }
 
 .container .category-item.details {
-    flex: 0 0 29%;
+    flex: 0 0 29.3%;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -88,4 +107,75 @@ body {
 .container .category-item.details .btn-buy-product {
     padding: 10px 40px;
     cursor: pointer;
+}
+
+.container .category-item.details .order-form {
+    padding: 20px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+.container .category-item.details .order-form .text-field-block {
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.container .category-item.details .order-form .text-field-block select,
+.container .category-item.details .order-form .text-field-block input {
+    width: -webkit-fill-available;
+    height: 30px;
+}
+.container .category-item.details .order-form .text-field-block textarea {
+    width: -webkit-fill-available;
+}
+.container .category-item.details .order-form .text-field-block input[type="radio"] {
+    width: auto;
+    height: 16px;
+    cursor: pointer;
+}
+.container .category-item.details .order-form .text-field-block .radio-label {
+    cursor: pointer;
+}
+.container .category-item.details .order-form .text-field-block button {
+    cursor: pointer;
+}
+.error-message {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+}
+.error-message span {
+    color: red;
+}
+
+.order-list {
+    margin-bottom: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.order-list table {
+    width: fit-content;
+    border: 1px solid;
+    border-left-width: 0;
+}
+.order-list table th {
+    padding: 5px;
+    border-left: 1px solid;
+    border-bottom: 1px solid;
+}
+.order-list table td {
+    padding: 5px;
+    border-left: 1px solid;
+}
+.order-list img {
+    object-fit: contain;
+    width: 100px;
+    height: 100px;
 }
