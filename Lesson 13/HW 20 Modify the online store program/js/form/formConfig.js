@@ -15,6 +15,7 @@ const FORM_CONFIG = [
         tagName: "select",
         attributes: {name: "delivery_to_city"},
         options: [
+            {attributes: {value: "--Виберіть місто доставки--"}, content: "--Виберіть місто доставки--"},
             {attributes: {value: "Київ"}, content: "Київ"},
             {attributes: {value: "Харків"}, content: "Харків"},
             {attributes: {value: "Львів"}, content: "Львів"},
