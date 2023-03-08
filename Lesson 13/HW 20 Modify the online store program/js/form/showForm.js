@@ -1,6 +1,6 @@
 "use strict";
 
-const showForm = parentForm => {
+const showForm = (parentForm, product) => {
     parentForm.querySelector(".btn-buy-product").remove();
 
     createElement("h2", {className: "sub-title"}, null, "Оформити замовлення", parentForm);
@@ -20,5 +20,16 @@ const showForm = parentForm => {
             createElement("label", value.radioLabel.attributes, null, value.radioLabel.textContent, textFieldBlockElem);
         }
     }
+    createElement(
+        "input",
+        {type: "button", value: "Оформити замовлення"},
+        {
+            click: () => {
+                orderProduct(product);
+            },
+        },
+        null,
+        orderForm
+    );
     createElement("div", {className: "error-message"}, null, null, orderForm);
 };

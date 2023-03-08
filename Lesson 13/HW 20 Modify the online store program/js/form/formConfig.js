@@ -6,14 +6,14 @@ const FORM_CONFIG = [
         tagName: "input",
         attributes: {
             type: "text",
-            name: "full_name",
+            name: "fullName",
             placeholder: "ПІБ...",
         },
     },
     {
         title: "Місто доставки: *",
         tagName: "select",
-        attributes: {name: "delivery_to_city"},
+        attributes: {name: "deliveryToCity"},
         options: [
             {attributes: {value: "--Виберіть місто доставки--"}, content: "--Виберіть місто доставки--"},
             {attributes: {value: "Київ"}, content: "Київ"},
@@ -28,7 +28,7 @@ const FORM_CONFIG = [
         tagName: "input",
         attributes: {
             type: "number",
-            name: "new_post_warehouse",
+            name: "newPostWarehouse",
             placeholder: "Відділення Нової пошти",
             min: 1,
         },
@@ -39,7 +39,7 @@ const FORM_CONFIG = [
         attributes: {
             id: "postpaid",
             type: "radio",
-            name: "postpaid_and_paymentCard",
+            name: "postpaidAndPaymentCard",
             value: "Післяплата",
         },
         radioLabel: {attributes: {className: "radio-label", for: "postpaid"}, textContent: "Післяплата"},
@@ -49,7 +49,7 @@ const FORM_CONFIG = [
         attributes: {
             id: "paymentCard",
             type: "radio",
-            name: "postpaid_and_paymentCard",
+            name: "postpaidAndPaymentCard",
             value: "Оплата банківською карткою",
         },
         radioLabel: {attributes: {className: "radio-label", for: "paymentCard"}, textContent: "Оплата банківською карткою"},
@@ -59,7 +59,7 @@ const FORM_CONFIG = [
         tagName: "input",
         attributes: {
             type: "number",
-            name: "count_products",
+            name: "countProducts",
             value: 1,
             min: 1,
         },
@@ -68,13 +68,8 @@ const FORM_CONFIG = [
         title: "Коментар до замовлення:",
         tagName: "textarea",
         attributes: {
-            name: "comment_order",
+            name: "commentOrder",
             rows: "5",
         },
-    },
-    {
-        tagName: "input",
-        attributes: {type: "button", value: "Оформити замовлення"},
-        handlers: {click: orderProduct},
     },
 ];

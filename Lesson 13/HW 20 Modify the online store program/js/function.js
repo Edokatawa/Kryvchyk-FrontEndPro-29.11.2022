@@ -47,3 +47,22 @@ const isFormValid = (formValues, errorMessageElem) => {
 
     return isValid;
 };
+
+const getFormValues = () => {
+    const {
+        fullName: {value: fullName},
+        deliveryToCity: {value: deliveryToCity},
+        newPostWarehouse: {value: newPostWarehouse},
+        postpaidAndPaymentCard: {value: postpaidAndPaymentCard},
+        countProducts: {value: countProducts},
+        commentOrder: {value: commentOrder},
+    } = document.forms[0];
+    return {
+        fullName,
+        deliveryToCity,
+        newPostWarehouse,
+        postpaidAndPaymentCard,
+        countProducts,
+        commentOrder: commentOrder || "Користувач не залишив коментар(",
+    };
+};

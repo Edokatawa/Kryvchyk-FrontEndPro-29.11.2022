@@ -1,7 +1,5 @@
 "use strict";
 
-const orderProductData = {};
-
 const showCategories = dataProd => {
     clearElements(["categories", "products", "details"]);
 
@@ -43,18 +41,15 @@ const showProducts = ({target}) => {
     }
 };
 
-const showDetails = event => {
+const showDetails = ({target}) => {
     clearElements(["details"]);
 
     const detailsElem = document.querySelector(".details");
-    const {categoryId, productId} = event
-        .composedPath()
-        .filter(elem => elem.className === "product-item")
-        .map(elem => ({categoryId: +elem.dataset.categoryId[0], productId: +elem.dataset.productId[0]}))[0];
-    const {img, name, price, description} = DATA[categoryId].products[productId];
-    orderProductData.imgUrlProduct = img;
-    orderProductData.nameProduct = name;
-    orderProductData.priceProduct = price + " грн";
+    const targetBlock = target.closest(".product-item");
+    const {categoryId, productId} = targetBlock.dataset;
+    const product = DATA[categoryId].products[productId];
+
+    const {img, name, price, description} = product;
 
     createElement("h2", {className: "title"}, null, "Товар", detailsElem);
     const imgContainer = createElement("div", {className: "img-container"}, null, null, detailsElem);
@@ -68,7 +63,7 @@ const showDetails = event => {
         {className: "btn-buy-product"},
         {
             click: () => {
-                showForm(detailsElem);
+                showForm(detailsElem, product);
             },
         },
         "Купити",

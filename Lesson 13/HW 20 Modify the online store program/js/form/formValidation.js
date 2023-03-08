@@ -1,24 +1,28 @@
 "use strict";
 
 const FORM_VALIDATION = {
-    full_name: {
+    fullName: {
         regex: /^[а-я]+\s[а-я]+\s[а-я]+$/i,
         errorMessage: "Ви не ввели ПІБ",
     },
-    delivery_to_city: {
+    deliveryToCity: {
         regex: /^(Київ|Харків|Львів|Одеса|Дніпро)$/,
         errorMessage: "Ви не вказали місто доставки",
     },
-    new_post_warehouse: {
+    newPostWarehouse: {
         regex: /^\d+$/,
         errorMessage: "Ви не вказали відділення Нової пошти",
     },
-    postpaid_and_paymentCard: {
+    postpaidAndPaymentCard: {
         regex: /^(Післяплата|Оплата банківською карткою)$/,
         errorMessage: "Ви не вказали спосіб оплати",
     },
-    count_products: {
+    countProducts: {
         regex: /^\d+$/,
         errorMessage: "Ви не вказали кількість продукції, що купуєте",
+    },
+    commentOrder: {
+        regex: /[а-я]{0,}/,
+        errorMessage: "",
     },
 };
