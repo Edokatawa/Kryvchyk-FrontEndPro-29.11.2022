@@ -66,3 +66,47 @@ const getFormValues = () => {
         commentOrder: commentOrder || "Користувач не залишив коментар(",
     };
 };
+
+const classListAndDisabledElem = (currentElem, pastElem) => {
+    const pastBtnElem = document.querySelector(pastElem);
+    currentElem.disabled = true;
+    currentElem.classList.add("active");
+    pastBtnElem.disabled = false;
+    pastBtnElem.classList.remove("active");
+};
+
+const addOrderToOrdersList = order => {
+    const ordersJSONFormat = localStorage.getItem("orders");
+    if (ordersJSONFormat !== null) {
+        const orders = JSON.parse(ordersJSONFormat);
+        orders.push(order);
+        localStorage.setItem("orders", JSON.stringify(orders));
+    } else {
+        const orders = [];
+        orders.push(order);
+        localStorage.setItem("orders", JSON.stringify(orders));
+    }
+};
+
+const getFormatDate = milliseconds => {
+    const data = new Date(milliseconds);
+
+    let minutes = data.getMinutes();
+    if (minutes < 10) minutes = "0" + minutes;
+
+    let hours = data.getHours();
+    if (hours < 10) hours = "0" + hours;
+
+    let day = data.getDate();
+    if (day < 10) day = "0" + day;
+
+    let month = data.getMonth();
+    if (month < 10) month = "0" + month;
+
+    let year = data.getFullYear();
+    if (year < 10) year = "0" + year;
+
+    const result = `${hours}:${minutes} - ${day}.${month}.${year}`;
+
+    return result;
+};
