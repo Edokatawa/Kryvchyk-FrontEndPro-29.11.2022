@@ -89,21 +89,21 @@ const addOrderToOrdersList = order => {
 };
 
 const getFormatDate = milliseconds => {
-    const data = new Date(milliseconds);
+    const date = new Date(milliseconds);
 
-    let minutes = data.getMinutes();
+    let minutes = date.getMinutes();
     if (minutes < 10) minutes = "0" + minutes;
 
-    let hours = data.getHours();
+    let hours = date.getHours();
     if (hours < 10) hours = "0" + hours;
 
-    let day = data.getDate();
+    let day = date.getDate();
     if (day < 10) day = "0" + day;
 
-    let month = data.getMonth();
+    let month = date.getMonth();
     if (month < 10) month = "0" + month;
 
-    let year = data.getFullYear();
+    let year = date.getFullYear();
     if (year < 10) year = "0" + year;
 
     const result = `${hours}:${minutes} - ${day}.${month}.${year}`;
