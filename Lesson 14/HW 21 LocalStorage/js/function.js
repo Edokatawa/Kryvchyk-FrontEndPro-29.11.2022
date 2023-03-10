@@ -76,37 +76,23 @@ const classListAndDisabledElem = (currentElem, pastElem) => {
 };
 
 const addOrderToOrdersList = order => {
-    const ordersJSONFormat = localStorage.getItem("orders");
-    if (ordersJSONFormat !== null) {
-        const orders = JSON.parse(ordersJSONFormat);
-        orders.push(order);
-        localStorage.setItem("orders", JSON.stringify(orders));
-    } else {
-        const orders = [];
-        orders.push(order);
-        localStorage.setItem("orders", JSON.stringify(orders));
-    }
+    const orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+    localStorage.setItem("orders", JSON.stringify([...orders, order]));
 };
+
+const sortOrdersArr = orders => orders.sort((order1, order2) => order2.orderDate - order1.orderDate);
+
+const getCorrectFormat = time => (time < 10 ? `0${time}` : time);
 
 const getFormatDate = milliseconds => {
     const date = new Date(milliseconds);
 
-    let minutes = date.getMinutes();
-    if (minutes < 10) minutes = "0" + minutes;
+    const minutes = getCorrectFormat(date.getMinutes());
+    const hours = getCorrectFormat(date.getHours());
+    const day = getCorrectFormat(date.getDate());
+    const month = getCorrectFormat(date.getMonth());
+    const year = getCorrectFormat(date.getFullYear());
 
-    let hours = date.getHours();
-    if (hours < 10) hours = "0" + hours;
-
-    let day = date.getDate();
-    if (day < 10) day = "0" + day;
-
-    let month = date.getMonth();
-    if (month < 10) month = "0" + month;
-
-    let year = date.getFullYear();
-    if (year < 10) year = "0" + year;
-
-    const result = `${hours}:${minutes} - ${day}.${month}.${year}`;
-
-    return result;
+    return `${hours}:${minutes} - ${day}.${month}.${year}`;
 };

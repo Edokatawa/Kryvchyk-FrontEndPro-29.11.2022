@@ -1,12 +1,10 @@
 "use strict";
 
-const showOrderTable = (titleTableObj, mainContentTableObj, parentElem) => {
+const showOrderTable = (mainContentTableObj, parentElem) => {
     const orderTableElem = createElement("table", {className: "order-table"}, null, null, parentElem);
     const trHeadElem = createElement("tr", null, null, null, orderTableElem);
 
-    for (let value of titleTableObj) {
-        createElement("th", null, null, value.thTitle, trHeadElem);
-    }
+    ORDER_TABLE_CONFIG.forEach(elem => createElement("th", null, null, elem, trHeadElem));
 
     const trBodyElem = createElement("tr", null, null, null, orderTableElem);
     for (let key in mainContentTableObj) {
