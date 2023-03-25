@@ -10,11 +10,7 @@ class Hamburger {
     static getSizeBurger(value) {
         const sizeBurgerMenu = [Hamburger.SIZE_SMALL, Hamburger.SIZE_BIG];
 
-        if (
-            sizeBurgerMenu.find(
-                ({name, price, calories}) => name === value.name && price === value.price && calories === value.calories
-            )
-        ) {
+        if (Hamburger.findHamburger(sizeBurgerMenu, value)) {
             return value;
         } else {
             throw new Error("Даного розміру бургера немає в меню.");
@@ -24,11 +20,7 @@ class Hamburger {
     static getStuffingBurger(value) {
         const stuffingBurgerMenu = [Hamburger.STUFFING_CHEESE, Hamburger.STUFFING_SALAD, Hamburger.STUFFING_POTATO];
 
-        if (
-            stuffingBurgerMenu.find(
-                ({name, price, calories}) => name === value.name && price === value.price && calories === value.calories
-            )
-        ) {
+        if (Hamburger.findHamburger(stuffingBurgerMenu, value)) {
             return value;
         } else {
             throw new Error("Цієї начинки немає в меню.");
@@ -55,6 +47,12 @@ class Hamburger {
     }
     static get TOPPING_MAYO() {
         return {name: "TOPPING_MAYO", price: 20, calories: 5};
+    }
+
+    static findHamburger(arrMenu, value) {
+        return arrMenu.find(
+            ({name, price, calories}) => name === value.name && price === value.price && calories === value.calories
+        );
     }
 
     showHamburgerInfo() {
@@ -85,16 +83,8 @@ class Hamburger {
             return this;
         }
 
-        if (
-            toppingsMenu.find(
-                ({name, price, calories}) => name === topping.name && price === topping.price && calories === topping.calories
-            )
-        ) {
-            if (
-                !toppings.find(
-                    ({name, price, calories}) => name === topping.name && price === topping.price && calories === topping.calories
-                )
-            ) {
+        if (Hamburger.findHamburger(toppingsMenu, topping)) {
+            if (!Hamburger.findHamburger(toppings, topping)) {
                 console.log(`В бургер додана добавка ${topping.name}`);
                 toppings.push(topping);
             } else {
