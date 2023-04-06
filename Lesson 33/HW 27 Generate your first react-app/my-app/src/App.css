@@ -1,0 +1,11 @@
+.app-body {
+    padding: 40px 60px;
+    display: flex;
+}
+.app-body div:first-child {
+    flex: 0 0 23.3333%;
+}
+
+.app-body div:last-child {
+    flex: 1 0 76.3333%;
+}

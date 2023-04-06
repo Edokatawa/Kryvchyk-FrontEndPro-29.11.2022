@@ -1,0 +1,42 @@
+.header {
+    padding: 16px 130px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(90, 0, 0);
+}
+.header .logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header .logo-container .logo {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+}
+.header .nav-menu {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+.header .nav-menu .menu-item {
+    padding: 0px 8px;
+    cursor: pointer;
+}
+.header .nav-menu .menu-item:hover {
+    color: red;
+}
+.header .social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header .social-icons .icon {
+    padding: 6px;
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}

@@ -1,0 +1,15 @@
+.left-sidebar-container {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+.left-sidebar-container .left-sidebar-item {
+    margin-right: 20px;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-right: 1px solid black;
+}
+.left-sidebar-container .left-sidebar-item:hover {
+    background-color: antiquewhite;
+    color: rgb(18, 1, 255);
+}
