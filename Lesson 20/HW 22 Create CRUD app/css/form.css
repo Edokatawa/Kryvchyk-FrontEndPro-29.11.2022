@@ -1,0 +1,42 @@
+.form-parent {
+    display: flex;
+}
+
+.form-parent .user-form {
+    margin-bottom: 26px;
+    padding: 24px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 100%;
+    border: 1px solid;
+    border-radius: 14px;
+    background-color: #f7f9ff;
+}
+.form-parent .user-form .text-field-block {
+    flex: 1 1 16.666%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.form-parent .user-form input[type="button"] {
+    margin-top: 14px;
+    flex: 1 1 100%;
+    cursor: pointer;
+}
+.form-parent .user-form .error-message {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex: 1 1 100%;
+    color: red;
+}
+
+.successful-title {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.edit-user-form {
+    margin-top: 24px;
+}

@@ -1,0 +1,72 @@
+html,
+body {
+    margin: 0;
+}
+
+button {
+    cursor: pointer;
+}
+
+.main-container {
+    padding: 80px 120px;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-container .title-page {
+    margin: 0px 0px 10px 0px;
+}
+.main-container .add-user-container {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.main-container .add-user-container .sub-title-page {
+    margin: 0px 0px 0px 0px;
+}
+
+.main-container .users-list-container {
+    display: flex;
+}
+.main-container .users-list-container .users-list,
+.main-container .users-list-container .user-information-block {
+    flex: 0 0 50%;
+}
+.main-container .users-list-container .users-list {
+    display: flex;
+    flex-direction: column;
+}
+.main-container .users-list-container .users-list .user-item {
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 14px;
+}
+.main-container .users-list-container .users-list .user-item .btn-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.main-container .users-list-container .users-list .user-item .btn-block button {
+    margin: 0 8px;
+}
+
+.main-container .users-list-container .user-information-block .user-info-block {
+    margin: 0px 14px;
+    padding: 20px 30px;
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid;
+    border-radius: 10px;
+}
+.main-container .users-list-container .user-information-block .user-info-block .user-title {
+    margin: 0px 0px 8px 0px;
+    flex: 1 0 100%;
+}
+.main-container .users-list-container .user-information-block .user-info-block .info-item {
+    margin: 0px 0px 10px 0px;
+    flex: 0 0 50%;
+}
