@@ -1,0 +1,14 @@
+button {
+    cursor: pointer;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .title {
+    margin-bottom: 34px;
+}
