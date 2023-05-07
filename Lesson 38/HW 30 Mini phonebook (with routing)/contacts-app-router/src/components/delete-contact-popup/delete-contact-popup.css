@@ -1,0 +1,39 @@
+.delete-contact-popup {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    background-color: rgba(91, 112, 131, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.delete-contact-popup .popup {
+    width: 350px;
+    height: 200px;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+}
+.delete-contact-popup .popup .popup-title {
+    text-align: center;
+}
+
+.delete-contact-popup .popup .popup-btn {
+    width: 74%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.delete-contact-popup .popup .popup-btn button {
+    margin: 0px 4px;
+    padding: 4px 40px;
+    background-color: rgb(214, 241, 255);
+}
+.delete-contact-popup .popup .popup-btn button:hover {
+    color: white;
+    background-color: rgb(0, 0, 75);
+}
