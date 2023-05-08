@@ -1,14 +1,18 @@
 import React, {useContext} from "react";
-import "./ContactsTable.css";
-import {LocationContext, ContactsListContext} from "../../App.js";
-import {CONTACTS_KEY} from "../../constants.js";
+import {LocationContext} from "../../context/location-context";
+import {ContactsListContext} from "../../context/contacts-list-context";
+import {CONTACTS_KEY} from "../../constants/CONTACTS_KEY";
+import {LOCATIONS} from "../../constants/LOCATIONS";
 import TitlePage from "../TitlePage/TitlePage.js";
+import "./ContactsTable.css";
 
 const ContactsTable = () => {
     const {setLocation} = useContext(LocationContext);
     const {contactsList, setContactsList} = useContext(ContactsListContext);
 
-    const removeContact = idContact => {
+    const hasContacts = !!contactsList.length;
+
+    const removeContact = idContact => () => {
         const removeThisContact = window.confirm(`Ви дійсно хочете видалити контакт?`);
         if (removeThisContact) {
             const newContactsList = contactsList.filter(elem => elem.id !== idContact);
@@ -20,8 +24,8 @@ const ContactsTable = () => {
 
     return (
         <div className="contacts-container">
-            {!contactsList.length && <TitlePage textTitle="Список контактів порожній" />}
-            {!!contactsList.length && (
+            {!hasContacts && <TitlePage textTitle="Список контактів порожній" />}
+            {hasContacts && (
                 <>
                     <TitlePage textTitle="Список контактів" />
 
@@ -41,7 +45,7 @@ const ContactsTable = () => {
                                     <td>{elem.lastName}</td>
                                     <td>{elem.phone}</td>
                                     <td className="delete-btn">
-                                        <button onClick={() => removeContact(elem.id)}>Видалити</button>
+                                        <button onClick={removeContact(elem.id)}>Видалити</button>
                                     </td>
                                 </tr>
                             ))}
@@ -51,7 +55,7 @@ const ContactsTable = () => {
             )}
 
             <div className="btn-block-add-contact">
-                <button onClick={() => setLocation("add-form-page")}>Додати новий контак</button>
+                <button onClick={() => setLocation(LOCATIONS.ADD_FORM)}>Додати новий контак</button>
             </div>
         </div>
     );

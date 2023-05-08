@@ -1,41 +1,33 @@
-import React, {useState, useEffect, createContext} from "react";
+import React, {useState, useEffect} from "react";
 import ContactsTable from "./components/ContactsTable/ContactsTable.js";
-import "./App.css";
 import AddContactForm from "./components/AddContactForm/AddContactForm.js";
-import {CONTACTS_KEY} from "./constants.js";
+import {useUsers} from "./hooks/useUsers.js";
+import {LocationContext} from "./context/location-context.js";
+import {ContactsListContext} from "./context/contacts-list-context.js";
+import {LOCATIONS} from "./constants/LOCATIONS";
+import "./App.css";
 
-export const LocationContext = createContext();
-export const ContactsListContext = createContext();
+const CONTENT_COMP = {
+    [LOCATIONS.MAIN_PAGE]: ContactsTable,
+    [LOCATIONS.ADD_FORM]: AddContactForm,
+};
 
 const App = () => {
-    const [location, setLocation] = useState("main-page");
+    const [location, setLocation] = useState(LOCATIONS.MAIN_PAGE);
     const [contactsList, setContactsList] = useState([]);
+    const Content = CONTENT_COMP[location];
+
+    const {loadUsers} = useUsers();
 
     useEffect(() => {
-        let storageContactsList = JSON.parse(localStorage.getItem(CONTACTS_KEY));
-
-        if (storageContactsList === null) {
-            fetch("https://jsonplaceholder.typicode.com/users")
-                .then(response => response.json())
-                .then(json => {
-                    storageContactsList = json.map(({id, name, phone}) => {
-                        const firstAndLastNameArr = name.split(" ", 2);
-
-                        return {id, firstName: firstAndLastNameArr[0], lastName: firstAndLastNameArr[1] || "", phone};
-                    });
-                    setContactsList(storageContactsList);
-                });
-        } else {
-            setContactsList(storageContactsList);
-        }
-    }, []);
+        loadUsers(setContactsList);
+    }, [loadUsers]);
 
     return (
         <LocationContext.Provider value={{location, setLocation: setLocation}}>
             <ContactsListContext.Provider value={{contactsList, setContactsList: setContactsList}}>
                 <div className="container">
-                    {location === "main-page" && <ContactsTable />}
-                    {location === "add-form-page" && <AddContactForm />}
+                    <Content />
                 </div>
             </ContactsListContext.Provider>
         </LocationContext.Provider>

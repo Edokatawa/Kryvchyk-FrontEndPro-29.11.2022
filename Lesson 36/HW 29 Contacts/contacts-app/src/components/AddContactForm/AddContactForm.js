@@ -1,7 +1,10 @@
 import {useContext, useState} from "react";
+import {LocationContext} from "../../context/location-context";
+import {ContactsListContext} from "../../context/contacts-list-context";
+import {CONTACTS_KEY} from "../../constants/CONTACTS_KEY";
+import {LOCATIONS} from "../../constants/LOCATIONS";
+import {isFormValid} from "../isFormValid";
 import "./AddContactForm.css";
-import {LocationContext, ContactsListContext} from "../../App.js";
-import {CONTACTS_KEY, FORM_VALIDATION} from "../../constants.js";
 
 const AddContactForm = () => {
     const {setLocation} = useContext(LocationContext);
@@ -14,46 +17,20 @@ const AddContactForm = () => {
         setInputText({...inputText, [key]: inputVal});
     };
 
-    const isFormValid = formValues => {
-        let isValid = true;
-        let currentMessagesState = {};
-
-        for (const key in formValues) {
-            const {regex, errorMessage} = FORM_VALIDATION[key];
-
-            if (!regex.test(formValues[key])) {
-                isValid = false;
-                currentMessagesState = {...currentMessagesState, [key]: errorMessage};
-            } else {
-                currentMessagesState = {...currentMessagesState, [key]: ""};
-            }
-        }
-
-        setErrorMessages(currentMessagesState);
-
-        return isValid;
-    };
-
     const addContact = event => {
         event.preventDefault();
+        const {isValid, errors} = isFormValid(inputText);
 
-        if (isFormValid(inputText)) {
-            let maxId = contactsList.reduce((acc, curr) => {
-                if (curr.id) {
-                    if (acc > curr.id) {
-                        return acc;
-                    }
+        if (errors) {
+            setErrorMessages(errors);
+        }
 
-                    return curr.id;
-                }
+        if (isValid) {
+            const newContacts = [...contactsList, {id: crypto.randomUUID(), ...inputText}];
 
-                return 0;
-            }, 0);
-
-            const contact = {id: ++maxId, ...inputText};
-            localStorage.setItem(CONTACTS_KEY, JSON.stringify([...contactsList, contact]));
-            setContactsList([...contactsList, contact]);
-            setLocation("main-page");
+            localStorage.setItem(CONTACTS_KEY, JSON.stringify(newContacts));
+            setContactsList(newContacts);
+            setLocation(LOCATIONS.MAIN_PAGE);
         }
     };
 
@@ -95,7 +72,7 @@ const AddContactForm = () => {
                     <button type="submit" onClick={event => addContact(event)}>
                         Зберегти
                     </button>
-                    <button onClick={() => setLocation("main-page")}>Скасувати</button>
+                    <button onClick={() => setLocation(LOCATIONS.MAIN_PAGE)}>Скасувати</button>
                 </div>
             </form>
         </div>
