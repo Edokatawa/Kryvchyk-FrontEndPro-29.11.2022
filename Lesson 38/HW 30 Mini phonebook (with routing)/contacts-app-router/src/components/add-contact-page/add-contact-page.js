@@ -7,7 +7,7 @@ const AddContactPage = () => {
         <div className="add-contact-page">
             <TitleBlock textTitle="Форма додавання нового контакту" />
 
-            <ContactForm formName="addContactForm" editContactId={null} />
+            <ContactForm formName="addContactForm" contact={null} />
         </div>
     );
 };

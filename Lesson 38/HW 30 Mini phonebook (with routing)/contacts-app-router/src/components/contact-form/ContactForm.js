@@ -1,66 +1,36 @@
-import {useContext, useEffect, useState} from "react";
+import {useContext, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {ContactsListContext} from "../../context/contacts-list-context";
 import {CONTACTS_KEY} from "../../constants.js";
 import {isFormValid} from "../isFormValid";
 import "./ContactForm.css";
 
-const ContactForm = ({formName, editContactId}) => {
+const ContactForm = ({formName, contact}) => {
     const {contactsList, setContactsList} = useContext(ContactsListContext);
     const navigate = useNavigate();
 
-    const [inputText, setInputText] = useState({firstName: "", lastName: "", phone: ""});
+    const [form, setForm] = useState(contact || {firstName: "", lastName: "", phone: ""});
     const [errorMessages, setErrorMessages] = useState({firstName: "", lastName: "", phone: ""});
 
-    useEffect(() => {
-        let defTextInput = {};
-
-        if (editContactId !== null) {
-            const currentEditContact = contactsList.find(contact => contact.id === editContactId);
-
-            for (const key in currentEditContact) {
-                if (key !== "id") {
-                    defTextInput[key] = currentEditContact[key];
-                }
-            }
-
-            setInputText(defTextInput);
-        }
-    }, []);
-
     const handleInputText = ({target: {name: key, value: inputVal}}) => {
-        setInputText({...inputText, [key]: inputVal});
+        setForm({...form, [key]: inputVal});
     };
 
     const actionContact = event => {
         event.preventDefault();
-        const {isValid, errors} = isFormValid(inputText);
+        const {isValid, errors} = isFormValid(Object.fromEntries(Object.entries({...form}).filter(([key]) => key !== "id")));
 
         if (errors) {
             setErrorMessages(errors);
         }
 
         if (isValid) {
-            let newContact = [];
+            const newContacts = !!contact
+                ? contactsList.map(oldContact => (oldContact.id === contact.id ? {...contact, ...form} : oldContact))
+                : [...contactsList, {id: crypto.randomUUID(), ...form}];
 
-            if (editContactId !== null) {
-                newContact = contactsList.map(contact => {
-                    if (contact.id === editContactId) {
-                        for (let key in contact) {
-                            if (inputText[key]) {
-                                contact[key] = inputText[key];
-                            }
-                        }
-                    }
-
-                    return contact;
-                });
-            } else {
-                newContact = [...contactsList, {id: crypto.randomUUID(), ...inputText}];
-            }
-
-            localStorage.setItem(CONTACTS_KEY, JSON.stringify(newContact));
-            setContactsList(newContact);
+            localStorage.setItem(CONTACTS_KEY, JSON.stringify(newContacts));
+            setContactsList(newContacts);
             navigate("/");
         }
     };
@@ -69,17 +39,17 @@ const ContactForm = ({formName, editContactId}) => {
         <form className="contact-form" name={formName}>
             <div className="text-field-block">
                 <label htmlFor="firstName">Введіть Ім'я</label>
-                <input type="text" name="firstName" placeholder="Ім'я" value={inputText.firstName} onChange={handleInputText} />
+                <input type="text" name="firstName" placeholder="Ім'я" value={form.firstName} onChange={handleInputText} />
                 <div className="error-message">{errorMessages.firstName}</div>
             </div>
             <div className="text-field-block">
                 <label htmlFor="lastName">Введіть Прізвище</label>
-                <input type="text" name="lastName" placeholder="Прізвище" value={inputText.lastName} onChange={handleInputText} />
+                <input type="text" name="lastName" placeholder="Прізвище" value={form.lastName} onChange={handleInputText} />
                 <div className="error-message">{errorMessages.lastName}</div>
             </div>
             <div className="text-field-block">
                 <label htmlFor="phone">Введіть Номер телефону</label>
-                <input type="text" name="phone" placeholder="Телефон" value={inputText.phone} onChange={handleInputText} />
+                <input type="text" name="phone" placeholder="Телефон" value={form.phone} onChange={handleInputText} />
                 <div className="error-message">{errorMessages.phone}</div>
             </div>
 
