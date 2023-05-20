@@ -1,0 +1,40 @@
+.contacts-table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.contacts-table tr th {
+    padding: 8px 6px;
+    border: 1px solid black;
+    background-color: rgb(226, 226, 255);
+}
+.contacts-table tbody {
+    border-left: 1px solid;
+}
+.contacts-table tr td {
+    padding: 6px 16px;
+    border: 1px solid black;
+    border-width: 0px 1px 1px 0px;
+}
+
+.contacts-table .edit-btn,
+.contacts-table .delete-btn {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.contacts-table .edit-btn button {
+    padding: 2px 14px;
+    color: black;
+    background-color: rgb(164, 255, 193);
+}
+.contacts-table .delete-btn button {
+    padding: 2px 14px;
+    color: black;
+    background-color: rgb(255, 227, 227);
+}
+
+.contacts-table .edit-btn button:hover,
+.contacts-table .delete-btn button:hover {
+    color: white;
+    background-color: rgb(0, 46, 50);
+}

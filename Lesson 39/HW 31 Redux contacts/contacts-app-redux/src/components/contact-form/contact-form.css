@@ -1,0 +1,38 @@
+.contact-form {
+    padding: 20px 16px;
+    width: 32vw;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+.contact-form .text-field-block {
+    width: 60%;
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+}
+.contact-form .text-field-block input {
+    padding: 6px 20px;
+}
+.btn-form-block {
+    margin-top: 10px;
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.btn-form-block button {
+    padding: 8px 30px;
+    background-color: rgb(205, 207, 255);
+}
+.btn-form-block button:hover {
+    color: white;
+    background-color: rgb(0, 6, 121);
+}
+
+.error-message {
+    color: red;
+}
